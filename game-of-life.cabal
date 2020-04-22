@@ -1,0 +1,45 @@
+name:                game-of-life
+synopsis:            fp-akl implementing game-of-life
+version:             0.0.1.0
+homepage:            https://github.com/fp-akl/game-of-life
+license:             BSD3
+author:              fp akl
+maintainer:          fp akl
+copyright:           fp akl
+category:            Game
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  exposed-modules:     GameOfLife
+  ghc-options:         -Wall -fno-warn-name-shadowing
+  build-depends:       base >= 4.11 && < 5
+                     , async
+                     , bytestring
+                     , containers
+                     , text
+                     , unordered-containers
+                     , ansi-terminal
+                     , terminal-size
+                     , gloss
+
+executable game-of-life
+  main-is:            Main.hs
+  hs-source-dirs:     app
+  default-language:   Haskell2010
+  ghc-options:        -threaded -O2
+  build-depends:      base
+                    , game-of-life
+
+test-suite game-of-life-tests
+  type:             exitcode-stdio-1.0
+  hs-source-dirs:   test
+  main-is:          Main.hs
+  default-language: Haskell2010
+  ghc-options:      -Wall -threaded
+  build-depends:    base >=4.11 && < 5
+                  , game-of-life
+                  , hedgehog
+                  , containers
